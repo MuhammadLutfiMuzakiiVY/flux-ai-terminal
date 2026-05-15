@@ -1,0 +1,4 @@
+namespace "Flux"
+
+boolean init_flux(string data_dir);
+string send_message(string json);

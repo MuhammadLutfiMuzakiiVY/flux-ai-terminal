@@ -1,0 +1,31 @@
+# Rust
+/target
+Cargo.lock
+**/*.rs.bk
+
+# Android
+.gradle
+/build
+/android-app/build
+/android-app/app/build
+*.iml
+.idea
+local.properties
+.DS_Store
+captures
+
+# iOS
+/ios-app/FluxApp/build
+/ios-app/FluxApp/FluxApp.xcodeproj/project.xcworkspace
+/ios-app/FluxApp/FluxApp.xcodeproj/xcuserdata
+
+# OS/IDE
+.vscode
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.key
+*.jks
+*.keystore

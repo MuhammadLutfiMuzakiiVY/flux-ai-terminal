@@ -1,0 +1,22 @@
+[package]
+name = "flux-shared-bindings"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "UniFFI and JNI bindings for Flux AI Terminal"
+
+[lib]
+crate-type = ["cdylib", "staticlib", "lib"]
+
+[dependencies]
+flux-core = { path = "../core" }
+uniffi = { workspace = true, features = ["cli"] }
+jni = { workspace = true }
+serde_json = { workspace = true }
+tracing = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+
+[build-dependencies]
+uniffi = { workspace = true, features = ["build"] }
