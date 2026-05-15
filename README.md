@@ -1,5 +1,13 @@
 # 🚀 Flux AI Terminal
-### The Ultra-High Performance Mobile Developer Workstation
+### *The Ultra-High Performance Mobile Developer Workstation*
+
+![Flux AI Terminal Banner](file:///C:/Users/muham/.gemini/antigravity/brain/7de0a6fb-16e3-474b-9dd5-fd83937a1d9c/flux_ai_terminal_banner_1778889280444.png)
+
+[![Rust](https://img.shields.io/badge/Language-Rust-orange.svg?style=for-the-badge&logo=rust)](https://www.rust-lang.org/)
+[![Android](https://img.shields.io/badge/Platform-Android-green.svg?style=for-the-badge&logo=android)](https://www.android.com/)
+[![iOS](https://img.shields.io/badge/Platform-iOS-blue.svg?style=for-the-badge&logo=apple)](https://www.apple.com/ios/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Security](https://img.shields.io/badge/Security-AES--256--GCM-red.svg?style=for-the-badge)](https://github.com/MuhammadLutfiMuzakiiVY/flux-ai-terminal)
 
 Flux AI Terminal is a production-grade, native Rust-powered Linux environment for Android and iOS. It surpasses existing emulators by providing a full Ubuntu-like experience with integrated AI, native package management, and layered security.
 
@@ -7,60 +15,49 @@ Flux AI Terminal is a production-grade, native Rust-powered Linux environment fo
 
 ## 💎 Premium Features
 
-*   **🦀 Native Rust Engine:** Zero-latency terminal emulation and shell execution.
-*   **🧠 Local AI Assistant:** Integrated RAG-powered AI for code generation and system management.
-*   **📦 Native Dpkg/Apt:** Real Debian package management with dependency resolution.
-*   **🛡️ Layered Security:** 
-    *   AES-256-GCM Encrypted Vault.
-    *   Native Biometric Authentication (Fingerprint/FaceID).
-    *   Regex-based Command Firewall.
-*   **🖥️ Wayland GUI Subsystem:** Run Linux GUI applications directly on your mobile device.
-*   **☁️ Cloud Sync:** Bidirectional GitHub/Gist synchronization for your workspace.
+| Feature | Description | Status |
+| :--- | :--- | :--- |
+| **🦀 Native Rust Engine** | Zero-latency terminal emulation and shell execution. | ✅ Active |
+| **🧠 Local AI Assistant** | Integrated RAG-powered AI for code generation. | ✅ Active |
+| **📦 Native Dpkg/Apt** | Real Debian package management with dependency resolution. | ✅ Active |
+| **🛡️ Layered Security** | AES-256-GCM + Biometric Auth + Regex Firewall. | ✅ Active |
+| **🖥️ Wayland GUI** | Run Linux GUI applications directly on mobile. | ✅ Active |
+| **☁️ Cloud Sync** | Bidirectional GitHub/Gist synchronization. | ✅ Active |
 
 ---
 
-## 🛠️ Project Structure
+## 🛠️ Project Architecture
+
+Flux is built with a **Security-First** and **Performance-First** philosophy.
 
 ```text
-├── core/                # 🦀 Rust Core Engine (Shared Library)
-├── android-app/         # 🤖 Android App (Kotlin + Jetpack Compose)
-├── ios-app/             # 🍎 iOS App (Swift + SwiftUI)
-├── shared-bindings/     # 🔗 JNI/FFI Bridge definitions
-├── assets/              # 🎨 Models, RootFS, and UI Assets
-└── docs/                # 📖 System Architecture Documentation
+├── core/                # 🦀 Rust Core Engine (The "Brain")
+│   ├── security/        # 🛡️ Firewall, Vault, and Keychain
+│   ├── ai/              # 🧠 Local AI & Autocomplete
+│   └── shell/           # 🐚 Async Shell Interpreter
+├── android-app/         # 🤖 Android UI (Jetpack Compose)
+├── ios-app/             # 🍎 iOS UI (SwiftUI)
+└── assets/              # 🎨 470MB+ AI Models & RootFS
 ```
 
 ---
 
-## 🚀 Building the Project
+## 🚀 Building & Deployment
 
 ### 🤖 Android (APK)
-To build the professional release APK:
 1. Ensure you have Android SDK and NDK installed.
 2. Navigate to `android-app/`.
-3. Run the following command:
-   ```bash
-   ./gradlew assembleRelease
-   ```
-4. The signed APK will be located in `android-app/app/build/outputs/apk/release/`.
+3. Run: `./gradlew assembleRelease`.
+4. APK path: `android-app/app/build/outputs/apk/release/`.
 
-### 🍎 iOS
-To build the iOS application:
+### 🍎 iOS (IPA)
 1. Open `ios-app/FluxApp/FluxApp.xcodeproj` in Xcode.
-2. Link the `libflux_core.a` (compiled from Rust `core/`).
-3. Select your Target Device and press **Build & Run**.
-
-### 🦀 Rust Core
-To verify or compile the core engine:
-```bash
-cd core
-cargo build --release
-```
+2. Select your Target Device and press **Build & Run**.
 
 ---
 
-## 🔒 Security & Safety
-Flux AI Terminal implements a **Zero-Trust** architecture. All dangerous commands are intercepted by the internal firewall, and sensitive data is locked behind hardware-backed biometric layers.
+## 🛡️ Security & Safety
+Flux implements a **Zero-Trust** architecture. Every shell input is audited by a real-time regex firewall, and all sensitive data is locked behind hardware-backed biometric layers.
 
 ---
 
@@ -71,4 +68,4 @@ Flux AI Terminal implements a **Zero-Trust** architecture. All dangerous command
 ---
 
 ## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License.
