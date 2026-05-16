@@ -99,6 +99,22 @@ Unlike basic terminals, Flux includes a local **Retrieval-Augmented Generation (
 
 ---
 
+## 📦 Core Package Ecosystem
+Flux AI Terminal supports a vast array of industry-standard development tools, pre-optimized for mobile ARM64/x86_64 architectures.
+
+| Category | Available Packages | Integration Level |
+| :--- | :--- | :--- |
+| **Languages** | Node.js, Python 3.12, Rust 1.78, Go 1.22 | Native |
+| **Editors** | Vim (NeoVim), Nano, Micro | Full PTY |
+| **Networking** | OpenSSH, Curl, Wget, Nmap | Rootless |
+| **Database** | SQLite 3, Redis (Local), PostgreSQL | Isolated |
+| **Build Tools** | Gcc, Clang, Make, Cmake | Native |
+
+> [!NOTE]
+> All packages are managed via the internal **Flux Apt Manager**, which handles dependency resolution and atomic updates within the VFS layer.
+
+---
+
 ## 🛠️ Technical Specifications
 
 [![Rust](https://img.shields.io/badge/Language-Rust-orange.svg?style=for-the-badge&logo=rust)](https://www.rust-lang.org/)
