@@ -2,7 +2,12 @@ name: Publish Flux Core Package
 
 on:
   release:
-    types: [created]
+    types: [published]
+  push:
+    branches: [main]
+    paths:
+      - 'core/**'
+      - 'Dockerfile'
 
 jobs:
   publish:
@@ -15,25 +20,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Build Core Tarball
-        run: |
-          cd core
-          cargo build --release
-          tar -czvf flux-core-linux-x86_64.tar.gz target/release/libflux_core.so
-
-      - name: Publish to GitHub Packages
-        uses: actions/upload-artifact@v3
-        with:
-          name: flux-core-package
-          path: core/flux-core-linux-x86_64.tar.gz
-
       - name: Log in to GitHub Container Registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and Push Dockerized Flux Engine
-        run: |
-          docker build -t ghcr.io/${{ github.repository }}/flux-engine:latest .
-          docker push ghcr.io/${{ github.repository }}/flux-engine:latest
+      - name: Build and Push Flux Engine Image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/flux-engine:latest
+            ghcr.io/${{ github.repository_owner }}/flux-engine:${{ github.sha }}
