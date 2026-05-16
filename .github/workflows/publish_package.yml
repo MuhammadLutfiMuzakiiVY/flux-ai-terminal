@@ -1,0 +1,39 @@
+name: Publish Flux Core Package
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build Core Tarball
+        run: |
+          cd core
+          cargo build --release
+          tar -czvf flux-core-linux-x86_64.tar.gz target/release/libflux_core.so
+
+      - name: Publish to GitHub Packages
+        uses: actions/upload-artifact@v3
+        with:
+          name: flux-core-package
+          path: core/flux-core-linux-x86_64.tar.gz
+
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build and Push Dockerized Flux Engine
+        run: |
+          docker build -t ghcr.io/${{ github.repository }}/flux-engine:latest .
+          docker push ghcr.io/${{ github.repository }}/flux-engine:latest

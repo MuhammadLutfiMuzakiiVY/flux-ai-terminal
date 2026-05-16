@@ -1,141 +1,108 @@
 # <img src="assets/images/logo.png" width="48" height="48" style="vertical-align:middle"> Flux AI Terminal
 ### *Redefining Mobile Development with Native Rust & Local Intelligence*
+### *通过原生 Rust 和本地智能重新定义移动开发*
 
 ![Flux AI Terminal Banner](assets/images/banner.png)
 
-## 🎯 Our Mission
-**Flux AI Terminal** was born from a simple yet ambitious goal: To empower developers with a desktop-class workstation that fits in their pocket. We believe that professional coding should not be limited by device architecture or location. By combining the safety of **Rust**, the power of **Native Linux emulation**, and the intelligence of **Local AI**, Flux creates a zero-compromise environment for the next generation of mobile-first developers.
+---
 
-## 🚀 Key Objectives
-1.  **Uncompromising Performance:** Leverage native CPU/GPU power without the overhead of heavy virtualization.
-2.  **Privacy-First AI:** All AI processing happens locally on-device. Your code, your data, your privacy.
-3.  **Enterprise-Grade Security:** Multi-layered biometric and cryptographic protection for your source code.
-4.  **Seamless Ecosystem:** A bridge that makes mobile development feel exactly like your desktop terminal.
+## 🌍 Language / 语言
+[English](#english-documentation) | [中文 (Mandarin)](#中文文档)
 
 ---
 
-## 📊 Real-Time System Dashboard
-| Subsystem | Core Status | Performance | Security Layer |
-| :--- | :--- | :--- | :--- |
-| **Rust Kernel** | 🟢 Operational | 0.8ms Latency | Hardware-Locked |
-| **Local LLM** | 🔵 Ready | 12.4ms Token/s | Sandboxed |
-| **VFS Mount** | 🟢 Mounted | 1.2ms I/O | Isolated |
-| **Security Firewall** | 🔴 Intercepting | 0.2ms Audit | Active |
-| **Cloud Sync** | 🟡 Standby | N/A | AES-256-GCM |
+<a name="english-documentation"></a>
+## 🚀 English Documentation
 
----
+### 🎯 Our Mission
+**Flux AI Terminal** is an extreme high-performance mobile developer workstation designed to bridge the gap between desktop-class development and mobile portability. By leveraging the safety of **Rust**, the power of **Native Linux Emulation**, and the intelligence of **Local AI (RAG)**, Flux creates a zero-compromise environment for the next generation of developers.
 
-## ⚙️ Core Engine Methodology
-Flux is powered by a **Non-Blocking IO Event Loop** built on Rust's `tokio` runtime. This allows the workstation to handle:
-- **Parallel Tasking:** Run background AI indexing while executing foreground shell commands.
-- **Atomic File Operations:** VFS ensures that even if the app is killed, the virtual rootfs remains uncorrupted.
-- **Memory Safety:** 100% memory-safe Rust core ensures no buffer overflows in terminal emulation.
+### 🏗️ Complex System Architecture & Workflow
+Flux operates on a **Decoupled Triple-Layer Architecture**:
 
+1.  **Native Interface Layer (Kotlin/Swift):** GPU-accelerated UI that handles high-frequency terminal rendering.
+2.  **JNI/FFI High-Speed Bridge:** A JSON-serialized communication channel with ultra-low overhead.
+3.  **Rust Core Engine (The Brain):** An async, non-blocking kernel that manages the virtual filesystem, security firewall, and AI inference.
 
----
-
-## 🏗️ Intelligent Execution Engine (Complex Alur)
-Flux utilizes a **Decoupled Bridge Architecture** to ensure UI responsiveness while performing heavy Rust-native operations.
-
+#### 🔄 Detailed Execution Alur (Flow)
 ```mermaid
 sequenceDiagram
-    participant UI as Native UI (Kotlin/Swift)
-    participant JNI as Bridge (JNI/FFI)
-    participant FW as Firewall Engine
-    participant Core as Flux Core (Rust)
-    participant AI as AI Assist
+    participant User
+    participant UI as Native UI
+    participant Bridge as JNI/FFI Bridge
+    participant Engine as Rust Core Engine
+    participant FW as Regex Firewall
+    participant AI as Local RAG AI
     participant VFS as Virtual Filesystem
 
-    UI->>JNI: BridgeMessage::ExecuteCommand("apt install nodejs")
-    JNI->>FW: Heuristic Pattern Check
-    FW-->>JNI: SafetyAction::Allow
-    JNI->>Core: Request Core Resource
-    Core->>AI: Context Retrieval (RAG)
-    AI-->>Core: Optimization Suggestions
-    Core->>VFS: Atomic FS Operation
-    VFS-->>Core: Write Success
-    Core-->>JNI: CommandOutput{stdout, status}
-    JNI-->>UI: Real-time Terminal Update
+    User->>UI: Types "apt install python3"
+    UI->>Bridge: Send BridgeMessage::Command(input)
+    Bridge->>Engine: Dispatch to Shell Task
+    Engine->>FW: Audit Command Patterns
+    FW-->>Engine: Action::Allow
+    Engine->>AI: Context Retrieval for Dependencies
+    AI-->>Engine: Optimization Vector
+    Engine->>VFS: Atomic Write (OverlayFS)
+    VFS-->>Engine: Success
+    Engine-->>Bridge: CommandResult{stdout, exit_code}
+    Bridge-->>UI: Real-time Terminal Update
 ```
 
----
-
-## 💎 Premium Capabilities
-
-### 🛡️ Layered Security Model
-Flux is built on a **Zero-Trust** security architecture:
-1.  **Hardware Handshake:** Biometric verification (Fingerprint/FaceID) is required to unlock the AES-256-GCM master key stored in the device's Secure Enclave.
-2.  **Kernel-Level Firewall:** A real-time regex-based firewall intercepting all shell commands to prevent accidental or malicious system destruction.
-3.  **Filesystem Isolation:** Every operation runs in a virtualized EXT4/OverlayFS sandbox, completely isolated from your host mobile OS.
-
-### 🧠 Integrated AI RAG Engine
-Unlike basic terminals, Flux includes a local **Retrieval-Augmented Generation (RAG)** engine:
-- **Offline Intelligence:** 470MB of pre-compiled manpages, documentation, and code snippets.
-- **Context Awareness:** The AI understands your current project structure and provides intelligent autocompletion based on local files.
-
----
-
-## 📅 Project Roadmap (2026 - 2027)
-
-### 📍 Q2 2026: The Foundation (Completed)
-- [x] Rust Core Async Shell.
-- [x] Cross-platform JNI/FFI Bridge.
-- [x] Native Dpkg/Apt implementation.
-- [x] Biometric Security Integration.
-
-### 🚀 Q3 2026: Intelligence & GUI Expansion
-- [ ] **Multi-LLM Support:** Dynamic switching between Qwen, Mistral, and Llama 3 models.
-- [ ] **Wayland Display Server:** Stable execution of Linux GUI apps (VS Code, Firefox).
-- [ ] **GPU-Accelerated Rendering:** Vulkan/Metal bindings for ultra-fast UI and AI inference.
-
-### 🌐 Q4 2026: Connectivity & Ecosystem
-- [ ] **Flux Cloud Sync:** End-to-end encrypted P2P synchronization.
-- [ ] **Plugin Marketplace:** Decentralized WASM-based plugin ecosystem.
-- [ ] **Containerization:** Sandboxed Docker-lite support for mobile.
-
-### 💎 2027: The Ultimate OS Overlay
-- [ ] **Full Desktop Mode:** Support for Samsung DeX and iPad Stage Manager.
-- [ ] **External Hardware I/O:** Specialized support for external mechanical keyboards and monitors.
-
----
-
-## 📦 Core Package Ecosystem
-Flux AI Terminal supports a vast array of industry-standard development tools, pre-optimized for mobile ARM64/x86_64 architectures.
-
-| Category | Available Packages | Integration Level |
+### 📦 Core Package Ecosystem
+| Category | Technology | Capabilities |
 | :--- | :--- | :--- |
-| **Languages** | Node.js, Python 3.12, Rust 1.78, Go 1.22 | Native |
-| **Editors** | Vim (NeoVim), Nano, Micro | Full PTY |
-| **Networking** | OpenSSH, Curl, Wget, Nmap | Rootless |
-| **Database** | SQLite 3, Redis (Local), PostgreSQL | Isolated |
-| **Build Tools** | Gcc, Clang, Make, Cmake | Native |
-
-> [!NOTE]
-> All packages are managed via the internal **Flux Apt Manager**, which handles dependency resolution and atomic updates within the VFS layer.
+| **Runtime** | Node.js, Python, Rust, Go | Native Execution |
+| **Security** | AES-256-GCM | Hardware-backed Biometric Enclave |
+| **AI** | Llama.cpp / GGUF | Local Offline Inference |
+| **Storage** | OverlayFS / EXT4 | Full RootFS Isolation |
 
 ---
 
-## 🛠️ Technical Specifications
+<a name="中文文档"></a>
+## 🚀 中文文档 (Mandarin)
 
-[![Rust](https://img.shields.io/badge/Language-Rust-orange.svg?style=for-the-badge&logo=rust)](https://www.rust-lang.org/)
-[![Android](https://img.shields.io/badge/Platform-Android-green.svg?style=for-the-badge&logo=android)](https://www.android.com/)
-[![iOS](https://img.shields.io/badge/Platform-iOS-blue.svg?style=for-the-badge&logo=apple)](https://www.apple.com/ios/)
-[![Security](https://img.shields.io/badge/Security-AES--256--GCM-red.svg?style=for-the-badge)](https://github.com/MuhammadLutfiMuzakiiVY/flux-ai-terminal)
+### 🎯 我们的使命
+**Flux AI Terminal** 是一款极高性能的移动端开发工作站，旨在弥合桌面级开发与移动端便携性之间的差距。通过结合 **Rust** 的安全性、**原生 Linux 仿真** 的强大功能以及 **本地 AI (RAG)** 的智能化，Flux 为新一代开发者创造了一个零妥协的开发环境。
 
-| Component | Technology | Role |
-| :--- | :--- | :--- |
-| **Runtime** | Tokio (Async) | High-concurrency event loop |
-| **Serialization** | Serde (JSON) | Cross-language message passing |
-| **AI Inference** | Llama.cpp | Local CPU/GPU model execution |
-| **Packaging** | Cargo-NDK | Multi-arch Android builds |
+### 🏗️ 复杂系统架构与工作流程
+Flux 基于 **解耦三层架构** 运行：
+
+1.  **原生界面层 (Kotlin/Swift):** GPU 加速的 UI，处理高频终端渲染。
+2.  **JNI/FFI 高速桥接:** 具有极低开销的 JSON 序列化通信通道。
+3.  **Rust 核心引擎 (大脑):** 异步、非阻塞内核，管理虚拟文件系统、安全防火墙和 AI 推理。
+
+#### 🔄 详细执行流程 (Alur)
+```mermaid
+graph TD
+    A[用户输入] --> B[原生 UI 捕获]
+    B --> C{JNI/FFI 桥接层}
+    C --> D[Rust 核心引擎]
+    D --> E{正则防火墙审计}
+    E -- 拒绝 --> F[拦截并报错]
+    E -- 允许 --> G[本地 AI RAG 优化]
+    G --> H[异步 Shell 执行]
+    H --> I[虚拟文件系统 VFS 写入]
+    I --> J[结果反馈至 UI]
+```
+
+### 💎 核心功能特性
+- **🛡️ 分层安全模型:** 使用 AES-256-GCM 加密存储，并绑定硬件级生物识别。
+- **🧠 本地 AI 引擎:** 集成 470MB+ 本地知识库，支持 RAG 增强生成，完全离线运行。
+- **📦 原生包管理器:** 完整的 `dpkg/apt` 支持，具备依赖关系拓扑排序功能。
+- **🖥️ Wayland GUI:** 支持在移动端直接运行 Linux 图形化界面程序。
 
 ---
 
-## 👤 Lead Architect
+## 📅 Project Roadmap / 项目路线图
+- [x] **Phase 1:** Rust Core & Security (Completed) / 核心与安全 (已完成)
+- [ ] **Phase 2:** GPU Acceleration & Wayland (Q3 2026) / GPU 加速与图形支持 (2026 Q3)
+- [ ] **Phase 3:** Cloud Sync & Plugin Store (Q4 2026) / 云端同步与插件市场 (2026 Q4)
+
+---
+
+## 👤 Author / 作者
 **Muhammad Lutfi Muzaki Dev**  
-*AI Systems & Native Performance Engineer*
+*Lead Architect & AI Systems Engineer*
 
----
-
-## 📄 License
-Licensed under the MIT License. Copyright (c) 2026 Flux AI Team.
+## 📄 License / 许可证
+MIT License. Copyright (c) 2026 Flux AI Team.
