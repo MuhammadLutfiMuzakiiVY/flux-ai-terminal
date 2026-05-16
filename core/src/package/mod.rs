@@ -1,6 +1,8 @@
 use crate::{FluxResult, filesystem::VirtualFilesystem};
 use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet};
+use chrono;
+use rand;
 
 pub mod dpkg;
 pub use dpkg::DpkgManager;
@@ -121,6 +123,29 @@ impl AptPackageManager {
                 self.apt_install(&args[1..]).await
             }
             _ => Ok(("".into(), format!("E: Invalid operation {}", args[0]), 1)),
+        }
+    }
+
+    pub async fn handle_dpkg_command(&self, args: &[String]) -> FluxResult<(String, String, i32)> {
+        if args.is_empty() { return Ok(("dpkg: need an action".into(), String::new(), 1)); }
+        match args[0].as_str() {
+            "-l" | "--list" => {
+                let mut out = String::from("Desired=Unknown/Install/Remove\n| Status=Not/Inst\n||/ Name           Version      Description\n+++-==============-============-===================\n");
+                for pkg in self.installed.values() {
+                    out.push_str(&format!("ii  {:<15}{:<13}{}\n", pkg.name, pkg.version, pkg.description));
+                }
+                Ok((out, String::new(), 0))
+            }
+            "-s" | "--status" => {
+                if let Some(name) = args.get(1) {
+                    if let Some(pkg) = self.installed.get(name.as_str()) {
+                        Ok((format!("Package: {}\nStatus: install ok installed\nVersion: {}\nDescription: {}\n", pkg.name, pkg.version, pkg.description), String::new(), 0))
+                    } else {
+                        Ok(("".into(), format!("dpkg-query: package '{}' is not installed", name), 1))
+                    }
+                } else { Ok(("".into(), "dpkg: need a package name".into(), 1)) }
+            }
+            _ => Ok(("".into(), format!("dpkg: unknown option {}", args[0]), 1)),
         }
     }
 
