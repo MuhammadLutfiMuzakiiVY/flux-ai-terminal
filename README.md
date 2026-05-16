@@ -1,108 +1,99 @@
 # <img src="assets/images/logo.png" width="48" height="48" style="vertical-align:middle"> Flux AI Terminal
 ### *Redefining Mobile Development with Native Rust & Local Intelligence*
-### *通过原生 Rust 和本地智能重新定义移动开发*
 
 ![Flux AI Terminal Banner](assets/images/banner.png)
 
 ---
 
-## 🌍 Language / 语言
-[English](#english-documentation) | [中文 (Mandarin)](#中文文档)
+## 🌍 Global Documentation / 全球文档
+[English](#english) | [中文](#chinese) | [日本語](#japanese) | [한국어](#korean) | [العربية](#arabic) | [Español](#spanish)
 
 ---
 
-<a name="english-documentation"></a>
-## 🚀 English Documentation
+<a name="english"></a>
+## 🇺🇸 English Documentation
+**Flux AI Terminal** is a professional-grade mobile developer workstation. It combines a high-performance **Rust Engine**, **Native Linux Emulation**, and **Local AI (RAG)** to provide a desktop-class experience on Android and iOS.
 
-### 🎯 Our Mission
-**Flux AI Terminal** is an extreme high-performance mobile developer workstation designed to bridge the gap between desktop-class development and mobile portability. By leveraging the safety of **Rust**, the power of **Native Linux Emulation**, and the intelligence of **Local AI (RAG)**, Flux creates a zero-compromise environment for the next generation of developers.
+### 🚀 Key Features
+- **Security:** AES-256-GCM + Biometric Auth.
+- **Performance:** Async Rust Core with zero latency.
+- **Packages:** Native `apt/dpkg` package management.
+- **AI:** Local offline LLM inference (Llama.cpp).
 
-### 🏗️ Complex System Architecture & Workflow
-Flux operates on a **Decoupled Triple-Layer Architecture**:
+---
 
-1.  **Native Interface Layer (Kotlin/Swift):** GPU-accelerated UI that handles high-frequency terminal rendering.
-2.  **JNI/FFI High-Speed Bridge:** A JSON-serialized communication channel with ultra-low overhead.
-3.  **Rust Core Engine (The Brain):** An async, non-blocking kernel that manages the virtual filesystem, security firewall, and AI inference.
+<a name="chinese"></a>
+## 🇨🇳 中文文档 (Mandarin)
+**Flux AI Terminal** 是一款专业级的移动端开发工作站。它结合了高性能的 **Rust 引擎**、**原生 Linux 仿真** 和 **本地 AI (RAG)**，在 Android 和 iOS 上提供桌面级的体验。
 
-#### 🔄 Detailed Execution Alur (Flow)
+### 🚀 核心功能
+- **安全:** AES-256-GCM + 生物识别身份验证。
+- **性能:** 零延迟的异步 Rust 核心。
+- **软件包:** 原生 `apt/dpkg` 软件包管理。
+- **AI:** 本地离线 LLM 推理 (Llama.cpp)。
+
+---
+
+<a name="japanese"></a>
+## 🇯🇵 日本語ドキュメント (Japanese)
+**Flux AI Terminal** は、プロフェッショナル向けのモバイル開発者用ワークステーションです。高性能な **Rust エンジン**、**ネイティブ Linux エミュレーション**、および **ローカル AI (RAG)** を組み合わせ、Android および iOS 上でデスクトップ級の体験を提供します。
+
+### 🚀 主な機能
+- **セキュリティ:** AES-256-GCM + 生体認証。
+- **パフォーマンス:** 遅延ゼロの非同期 Rust コア。
+- **パッケージ:** ネイティブな `apt/dpkg` パッケージ管理。
+- **AI:** ローカルオフライン LLM 推論 (Llama.cpp)。
+
+---
+
+<a name="korean"></a>
+## 🇰🇷 한국어 문서 (Korean)
+**Flux AI Terminal**은 전문 모바일 개발자용 워크스테이션입니다. 고성능 **Rust 엔진**, **네이티브 리눅스 에뮬레이션**, **로컬 AI (RAG)**를 결합하여 Android 및 iOS에서 데스크톱 급의 경험을 제공합니다.
+
+### 🚀 주요 기능
+- **보안:** AES-256-GCM + 생체 인식 인증.
+- **성능:** 지연 없는 비동기 Rust 코어.
+- **패키지:** 네이티브 `apt/dpkg` 패키지 관리.
+- **AI:** 로컬 오프라인 LLM 추론 (Llama.cpp)。
+
+---
+
+<a name="arabic"></a>
+## 🇸🇦 وثائق باللغة العربية (Arabic)
+**Flux AI Terminal** هي محطة عمل احترافية لمطوري الهاتف المحمول. فهي تجمع بين محرك **Rust** عالي الأداء، ومحاكاة **Linux الأصلية**، و**الذكاء الاصطناعي المحلي (RAG)** لتوفير تجربة من فئة سطح المكتب على أنظمة Android و iOS.
+
+### 🚀 الميزات الرئيسية
+- **الأمان:** تشفير AES-256-GCM + المصادقة البيومترية.
+- **الأداء:** نواة Rust غير متزامنة مع زمن وصول صفري.
+- **الحزم:** إدارة حزم `apt/dpkg` الأصلية.
+- **الذكاء الاصطناعي:** استدلال LLM محلي غير متصل بالإنترنت (Llama.cpp).
+
+---
+
+<a name="spanish"></a>
+## 🇪🇸 Documentación en Español (Spanish)
+**Flux AI Terminal** es una estación de trabajo profesional para desarrolladores móviles. Combina un motor de **Rust** de alto rendimiento, emulación de **Linux nativo** e **IA local (RAG)** para proporcionar una experiencia de escritorio en Android e iOS.
+
+### 🚀 Características Principales
+- **Seguridad:** AES-256-GCM + Autenticación Biométrica.
+- **Rendimiento:** Núcleo de Rust asíncrono con latencia cero.
+- **Paquetes:** Gestión de paquetes `apt/dpkg` nativa.
+- **IA:** Inferencia de LLM local sin conexión (Llama.cpp).
+
+---
+
+## 🏗️ Technical Workflow (Global)
 ```mermaid
 sequenceDiagram
-    participant User
     participant UI as Native UI
-    participant Bridge as JNI/FFI Bridge
-    participant Engine as Rust Core Engine
-    participant FW as Regex Firewall
-    participant AI as Local RAG AI
-    participant VFS as Virtual Filesystem
-
-    User->>UI: Types "apt install python3"
-    UI->>Bridge: Send BridgeMessage::Command(input)
-    Bridge->>Engine: Dispatch to Shell Task
-    Engine->>FW: Audit Command Patterns
-    FW-->>Engine: Action::Allow
-    Engine->>AI: Context Retrieval for Dependencies
-    AI-->>Engine: Optimization Vector
-    Engine->>VFS: Atomic Write (OverlayFS)
-    VFS-->>Engine: Success
-    Engine-->>Bridge: CommandResult{stdout, exit_code}
-    Bridge-->>UI: Real-time Terminal Update
+    participant Bridge as JNI/FFI
+    participant Core as Rust Core
+    UI->>Bridge: Command
+    Bridge->>Core: Process
+    Core-->>Bridge: Output
+    Bridge-->>UI: Render
 ```
 
-### 📦 Core Package Ecosystem
-| Category | Technology | Capabilities |
-| :--- | :--- | :--- |
-| **Runtime** | Node.js, Python, Rust, Go | Native Execution |
-| **Security** | AES-256-GCM | Hardware-backed Biometric Enclave |
-| **AI** | Llama.cpp / GGUF | Local Offline Inference |
-| **Storage** | OverlayFS / EXT4 | Full RootFS Isolation |
-
----
-
-<a name="中文文档"></a>
-## 🚀 中文文档 (Mandarin)
-
-### 🎯 我们的使命
-**Flux AI Terminal** 是一款极高性能的移动端开发工作站，旨在弥合桌面级开发与移动端便携性之间的差距。通过结合 **Rust** 的安全性、**原生 Linux 仿真** 的强大功能以及 **本地 AI (RAG)** 的智能化，Flux 为新一代开发者创造了一个零妥协的开发环境。
-
-### 🏗️ 复杂系统架构与工作流程
-Flux 基于 **解耦三层架构** 运行：
-
-1.  **原生界面层 (Kotlin/Swift):** GPU 加速的 UI，处理高频终端渲染。
-2.  **JNI/FFI 高速桥接:** 具有极低开销的 JSON 序列化通信通道。
-3.  **Rust 核心引擎 (大脑):** 异步、非阻塞内核，管理虚拟文件系统、安全防火墙和 AI 推理。
-
-#### 🔄 详细执行流程 (Alur)
-```mermaid
-graph TD
-    A[用户输入] --> B[原生 UI 捕获]
-    B --> C{JNI/FFI 桥接层}
-    C --> D[Rust 核心引擎]
-    D --> E{正则防火墙审计}
-    E -- 拒绝 --> F[拦截并报错]
-    E -- 允许 --> G[本地 AI RAG 优化]
-    G --> H[异步 Shell 执行]
-    H --> I[虚拟文件系统 VFS 写入]
-    I --> J[结果反馈至 UI]
-```
-
-### 💎 核心功能特性
-- **🛡️ 分层安全模型:** 使用 AES-256-GCM 加密存储，并绑定硬件级生物识别。
-- **🧠 本地 AI 引擎:** 集成 470MB+ 本地知识库，支持 RAG 增强生成，完全离线运行。
-- **📦 原生包管理器:** 完整的 `dpkg/apt` 支持，具备依赖关系拓扑排序功能。
-- **🖥️ Wayland GUI:** 支持在移动端直接运行 Linux 图形化界面程序。
-
----
-
-## 📅 Project Roadmap / 项目路线图
-- [x] **Phase 1:** Rust Core & Security (Completed) / 核心与安全 (已完成)
-- [ ] **Phase 2:** GPU Acceleration & Wayland (Q3 2026) / GPU 加速与图形支持 (2026 Q3)
-- [ ] **Phase 3:** Cloud Sync & Plugin Store (Q4 2026) / 云端同步与插件市场 (2026 Q4)
-
----
-
-## 👤 Author / 作者
+## 👤 Author
 **Muhammad Lutfi Muzaki Dev**  
 *Lead Architect & AI Systems Engineer*
-
-## 📄 License / 许可证
-MIT License. Copyright (c) 2026 Flux AI Team.
