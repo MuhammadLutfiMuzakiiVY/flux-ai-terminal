@@ -1,99 +1,83 @@
 # <img src="assets/images/logo.png" width="48" height="48" style="vertical-align:middle"> Flux AI Terminal
-### *Redefining Mobile Development with Native Rust & Local Intelligence*
+### *The Ultimate Native Rust Mobile Workstation*
 
 ![Flux AI Terminal Banner](assets/images/banner.png)
 
 ---
 
-## 🌍 Global Documentation / 全球文档
-[English](#english) | [中文](#chinese) | [日本語](#japanese) | [한국어](#korean) | [العربية](#arabic) | [Español](#spanish)
+## 🌍 Global Documentation
+- [English (Main)](README.md)
+- [中文 (Chinese)](README.zh.md)
+- [日本語 (Japanese)](README.jp.md)
+- [한국어 (Korean)](README.kr.md)
+- [العربية (Arabic)](README.ar.md)
+- [Español (Spanish)](README.es.md)
 
 ---
 
-<a name="english"></a>
-## 🇺🇸 English Documentation
-**Flux AI Terminal** is a professional-grade mobile developer workstation. It combines a high-performance **Rust Engine**, **Native Linux Emulation**, and **Local AI (RAG)** to provide a desktop-class experience on Android and iOS.
+## 🎯 Project Vision
+**Flux AI Terminal** is not just an emulator; it is a native execution environment built from the ground up to empower developers on the move. By leveraging the performance of **Rust** and the intelligence of **Local AI**, Flux provides a zero-latency, secure, and highly extensible Linux workstation that fits in your pocket.
 
-### 🚀 Key Features
-- **Security:** AES-256-GCM + Biometric Auth.
-- **Performance:** Async Rust Core with zero latency.
-- **Packages:** Native `apt/dpkg` package management.
-- **AI:** Local offline LLM inference (Llama.cpp).
+### 🌟 Why Flux?
+1. **Desktop Power on Mobile:** Run compilers, build tools, and web servers natively.
+2. **Offline Intelligence:** AI that works without an internet connection, preserving your privacy.
+3. **Hardened Security:** Your source code is protected by biometric encryption and a real-time command firewall.
 
 ---
 
-<a name="chinese"></a>
-## 🇨🇳 中文文档 (Mandarin)
-**Flux AI Terminal** 是一款专业级的移动端开发工作站。它结合了高性能的 **Rust 引擎**、**原生 Linux 仿真** 和 **本地 AI (RAG)**，在 Android 和 iOS 上提供桌面级的体验。
+## 🏗️ Deep-Dive Architecture
 
-### 🚀 核心功能
-- **安全:** AES-256-GCM + 生物识别身份验证。
-- **性能:** 零延迟的异步 Rust 核心。
-- **软件包:** 原生 `apt/dpkg` 软件包管理。
-- **AI:** 本地离线 LLM 推理 (Llama.cpp)。
+### 🦀 The Rust Core Engine
+The heart of Flux is an asynchronous, non-blocking kernel implemented in Rust. It utilizes the `tokio` runtime to manage thousands of concurrent tasks with minimal CPU overhead.
 
----
+#### Components:
+- **PTY Emulation:** A full Xterm-compatible pseudo-terminal for rendering complex TUI apps like NeoVim and htop.
+- **VFS (Virtual Filesystem):** An OverlayFS-style sandbox that provides a full Ubuntu rootfs without modifying your host system.
+- **Package Manager:** A native implementation of `dpkg` and `apt` for atomic package management.
 
-<a name="japanese"></a>
-## 🇯🇵 日本語ドキュメント (Japanese)
-**Flux AI Terminal** は、プロフェッショナル向けのモバイル開発者用ワークステーションです。高性能な **Rust エンジン**、**ネイティブ Linux エミュレーション**、および **ローカル AI (RAG)** を組み合わせ、Android および iOS 上でデスクトップ級の体験を提供します。
-
-### 🚀 主な機能
-- **セキュリティ:** AES-256-GCM + 生体認証。
-- **パフォーマンス:** 遅延ゼロの非同期 Rust コア。
-- **パッケージ:** ネイティブな `apt/dpkg` パッケージ管理。
-- **AI:** ローカルオフライン LLM 推論 (Llama.cpp)。
+### 🧠 AI RAG Engine
+Flux includes a localized **Retrieval-Augmented Generation** engine. It indexes your local documentation and manpages into a vector database, allowing the AI to provide context-accurate suggestions offline.
 
 ---
 
-<a name="korean"></a>
-## 🇰🇷 한국어 문서 (Korean)
-**Flux AI Terminal**은 전문 모바일 개발자용 워크스테이션입니다. 고성능 **Rust 엔진**, **네이티브 리눅스 에뮬레이션**, **로컬 AI (RAG)**를 결합하여 Android 및 iOS에서 데스크톱 급의 경험을 제공합니다.
+## 🛡️ Security Whitepaper
 
-### 🚀 주요 기능
-- **보안:** AES-256-GCM + 생체 인식 인증.
-- **성능:** 지연 없는 비동기 Rust 코어.
-- **패키지:** 네이티브 `apt/dpkg` 패키지 관리.
-- **AI:** 로컬 오프라인 LLM 추론 (Llama.cpp)。
+### 1. Cryptographic Enclave
+All sensitive tokens and git credentials are stored in an **AES-256-GCM** encrypted vault. The key is only derived after a successful biometric handshake with the device's hardware enclave (Secure Element).
+
+### 2. Regex Command Firewall
+Every input string is audited by a heuristic firewall. If a destructive pattern like `rm -rf /` or unauthorized network access is detected, the command is intercepted and logged.
 
 ---
 
-<a name="arabic"></a>
-## 🇸🇦 وثائق باللغة العربية (Arabic)
-**Flux AI Terminal** هي محطة عمل احترافية لمطوري الهاتف المحمول. فهي تجمع بين محرك **Rust** عالي الأداء، ومحاكاة **Linux الأصلية**، و**الذكاء الاصطناعي المحلي (RAG)** لتوفير تجربة من فئة سطح المكتب على أنظمة Android و iOS.
+## 📅 Roadmap 2026 - 2027
 
-### 🚀 الميزات الرئيسية
-- **الأمان:** تشفير AES-256-GCM + المصادقة البيومترية.
-- **الأداء:** نواة Rust غير متزامنة مع زمن وصول صفري.
-- **الحزم:** إدارة حزم `apt/dpkg` الأصلية.
-- **الذكاء الاصطناعي:** استدلال LLM محلي غير متصل بالإنترنت (Llama.cpp).
+### Phase 1: Stability (Current)
+- [x] Multi-arch support (ARM64, x86_64).
+- [x] Native Apt/Dpkg.
+- [x] Biometric Vault.
 
----
-
-<a name="spanish"></a>
-## 🇪🇸 Documentación en Español (Spanish)
-**Flux AI Terminal** es una estación de trabajo profesional para desarrolladores móviles. Combina un motor de **Rust** de alto rendimiento, emulación de **Linux nativo** e **IA local (RAG)** para proporcionar una experiencia de escritorio en Android e iOS.
-
-### 🚀 Características Principales
-- **Seguridad:** AES-256-GCM + Autenticación Biométrica.
-- **Rendimiento:** Núcleo de Rust asíncrono con latencia cero.
-- **Paquetes:** Gestión de paquetes `apt/dpkg` nativa.
-- **IA:** Inferencia de LLM local sin conexión (Llama.cpp).
+### Phase 2: GUI & GPU (Q3 2026)
+- [ ] **Wayland Display Server:** Run GUI apps natively.
+- [ ] **GPU Acceleration:** Vulkan support for AI inference.
 
 ---
 
-## 🏗️ Technical Workflow (Global)
-```mermaid
-sequenceDiagram
-    participant UI as Native UI
-    participant Bridge as JNI/FFI
-    participant Core as Rust Core
-    UI->>Bridge: Command
-    Bridge->>Core: Process
-    Core-->>Bridge: Output
-    Bridge-->>UI: Render
+## 🛠️ Build & Installation
+```bash
+# Clone the repository
+git clone https://github.com/MuhammadLutfiMuzakiiVY/flux-ai-terminal.git
+
+# Build the Rust Core
+cd core
+cargo build --release
+
+# Build Android APK
+cd ../android-app
+./gradlew assembleDebug
 ```
 
-## 👤 Author
-**Muhammad Lutfi Muzaki Dev**  
-*Lead Architect & AI Systems Engineer*
+---
+
+## 📄 License
+MIT License. Copyright (c) 2026 Flux AI Team.
