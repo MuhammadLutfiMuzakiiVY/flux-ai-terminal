@@ -1,7 +1,7 @@
-# <img src="file:///C:/Users/muham/.gemini/antigravity/brain/7de0a6fb-16e3-474b-9dd5-fd83937a1d9c/flux_ai_app_logo_1778890082322.png" width="48" height="48" style="vertical-align:middle"> Flux AI Terminal
+# <img src="assets/images/logo.png" width="48" height="48" style="vertical-align:middle"> Flux AI Terminal
 ### *The Ultra-High Performance Mobile Developer Workstation*
 
-![Flux AI Terminal Banner](file:///C:/Users/muham/.gemini/antigravity/brain/7de0a6fb-16e3-474b-9dd5-fd83937a1d9c/flux_ai_terminal_banner_1778889280444.png)
+![Flux AI Terminal Banner](assets/images/banner.png)
 
 ## 📊 Real-Time System Dashboard
 | Subsystem | Core Status | Performance | Security Layer |
@@ -11,6 +11,15 @@
 | **VFS Mount** | 🟢 Mounted | 1.2ms I/O | Isolated |
 | **Security Firewall** | 🔴 Intercepting | 0.2ms Audit | Active |
 | **Cloud Sync** | 🟡 Standby | N/A | AES-256-GCM |
+
+---
+
+## ⚙️ Core Engine Methodology
+Flux is powered by a **Non-Blocking IO Event Loop** built on Rust's `tokio` runtime. This allows the workstation to handle:
+- **Parallel Tasking:** Run background AI indexing while executing foreground shell commands.
+- **Atomic File Operations:** VFS ensures that even if the app is killed, the virtual rootfs remains uncorrupted.
+- **Memory Safety:** 100% memory-safe Rust core ensures no buffer overflows in terminal emulation.
+
 
 ---
 
