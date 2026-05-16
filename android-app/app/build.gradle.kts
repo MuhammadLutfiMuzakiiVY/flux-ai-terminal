@@ -18,11 +18,18 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        ndk {
+            // Support all major architectures for Flux Engine
+            abiFilters += listOf("arm64-v8a", "x86_64", "armeabi-v7a")
+        }
     }
+
+    ndkVersion = "26.1.10909125"
 
     buildTypes {
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = false // Disabled for initial debugging
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
