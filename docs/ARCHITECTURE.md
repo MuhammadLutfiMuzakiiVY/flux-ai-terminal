@@ -1,39 +1,88 @@
-# Architecture of Flux AI Terminal
+# 🏗️ Flux AI Terminal: System Architecture
+## *Extreme High-Performance Mobile Workstation*
 
-## Overview
+This document outlines the multi-layered architecture of Flux AI Terminal, designed for zero-latency, high security, and cross-platform native performance.
 
-Flux AI is designed with a strict separation of concerns, utilizing a high-performance Rust backend for all core logic, communicating via Foreign Function Interfaces (FFI) to lightweight, native UI layers.
+---
 
-## Core Rust Engine (`flux-core`)
+## 🗺️ High-Level System Map
 
-The Rust engine is the heart of Flux AI. It runs the entire Linux abstraction and AI integration.
+```mermaid
+graph TD
+    subgraph "Native UI Layer (Kotlin/Swift)"
+        A[Android UI - Compose]
+        B[iOS UI - SwiftUI]
+    end
 
-### Modules
-*   **Shell (`shell/`)**: Parses commands, handles pipes (`|`), redirects (`>`, `>>`), aliases, environment variables, and builtins (`cd`, `ls`, `pwd`, etc.).
-*   **Terminal (`terminal/`)**: Manages the PTY buffer, multi-tab state, ANSI color parsing, cursor positioning, and window splitting.
-*   **AI Engine (`ai/`)**: Handles communication with LLM providers (OpenAI, Anthropic, Gemini, Ollama). Maintains context awareness (current directory, file contents, recent errors).
-*   **Filesystem (`filesystem/`)**: A virtual Linux filesystem (`/bin`, `/etc`, `/home`, etc.) mapped to the app's sandboxed data directory.
-*   **Package Manager (`package/`)**: Implements `apt` and `dpkg` command parsing, resolving dependencies, and managing installed binaries.
-*   **Process Manager (`process/`)**: Virtual PID tracker that manages background jobs and provides output for commands like `ps` and `kill`.
-*   **Security (`security/`)**: Encrypted storage for API keys, biometric auth hooks, and a command safety system (blocking `rm -rf /`).
-*   **Sync (`sync/`)**: Manages cloud synchronization of the workspace and settings.
-*   **Device Integration (`device/`)**: Manages access to native hardware features like Camera, Microphone, GPS Location, Clipboard, Notifications, Biometrics, File Picker, and Sensors.
-*   **Developer Tools (`tools/`)**: Integrated SSH and SFTP manager, Code Editor buffers, Workspace directory registration, and Local Server port exposure.
+    subgraph "Bridge Layer (JNI/FFI)"
+        C[JNI Bridge - Android]
+        D[FFI Bridge - iOS]
+        E[Bridge Dispatcher - JSON Serialization]
+    end
 
-## Shared Bindings (`flux-shared-bindings`)
+    subgraph "Rust Core Engine (flux-core)"
+        F[Async Shell Interpreter]
+        G[Virtual Filesystem - VFS]
+        H[Package Manager - Dpkg/Apt]
+        I[AI Engine - Local RAG]
+        J[Security Layer - AES-256-GCM]
+        K[Wayland Display Server]
+    end
 
-This crate exposes the Rust core to external languages.
-*   **JNI**: Exported C-compatible functions that the Android JVM can call into.
-*   **UniFFI**: Used to generate Swift bindings for the iOS app.
+    subgraph "System Assets"
+        L[Ubuntu 24.04 RootFS]
+        M[Qwen 2.5 Coder Model]
+    end
 
-### Communication Protocol
-The UI and Core communicate primarily through asynchronous JSON message passing (`BridgeMessage`), allowing complex structured data (like chat history or directory trees) to be easily serialized and deserialized across the FFI boundary.
+    A --> C
+    B --> D
+    C --> E
+    D --> E
+    E --> F
+    F --> G
+    F --> H
+    F --> I
+    I --> M
+    G --> L
+    F --> J
+    F --> K
+```
 
-## Native Frontends
+---
 
-*   **Android (`android-app`)**: Built with Kotlin and Jetpack Compose. Utilizes a `ViewModel` architecture to manage state received from the Rust core.
-*   **iOS (`ios-app`)**: Built with Swift and SwiftUI. Follows an MVVM pattern, interfacing with the Rust core via the generated Swift wrapper.
+### 🛡️ Layer 1: Security Architecture (Zero-Trust)
+Flux implements a hardware-backed security model:
+- **Biometric Handshake:** Upon app start, the `Native UI` requests a biometric token.
+- **Keychain Unlock:** The token is passed to `security::keychain`, which unlocks the master AES key.
+- **Sealed Vault:** The `EncryptedVault` stays in an opaque state until decrypted in memory.
+- **Shell Firewall:** Every command is intercepted by `firewall::CommandFirewall` before parsing.
 
-## Emulator Compatibility
+### 🐚 Layer 2: Execution Engine
+- **Async Recursion:** The shell uses `BoxFuture` for deep-stack command pipelines without memory overflow.
+- **PTY Emulation:** Provides a full terminal-ready pseudo-terminal for interactive programs (vim, nano, htop).
+- **Process Management:** Tracks virtual PIDs and signals within the sandboxed environment.
 
-The Rust core detects if it is running within known Android emulators (BlueStacks, LDPlayer, NoxPlayer) and automatically adjusts settings such as enabling desktop keyboard passthrough and mapping host clipboard events to the terminal buffer.
+### 🧠 Layer 3: AI Intelligence
+- **Local RAG:** Uses a vector database stored in `assets/data/` for local context.
+- **LLM Integration:** Direct binding to `llama.cpp` for ultra-fast local inference on mobile NPUs.
+- **Autocomplete:** 20MB of pre-compiled command patterns for instant suggestion.
+
+### 🖥️ Layer 4: GUI Subsystem
+- **Wayland Integration:** Implements a minimal Wayland compositor in Rust.
+- **Surface Rendering:** Surfaces are rendered to `SurfaceView` (Android) or `CALayer` (iOS) via shared memory.
+
+---
+
+## 📦 Data & Memory Flow
+1. **Input:** User types a command in the Native UI.
+2. **Bridge:** The UI serializes the command into a `BridgeMessage::ExecuteCommand`.
+3. **Engine:** Flux Core receives the message, runs it through the Firewall, and parses the command.
+4. **Execution:** The command interacts with the VFS or Package Manager.
+5. **Output:** Real-time stdout/stderr streams are serialized back to the UI for rendering.
+
+---
+
+## 🛠️ Build Strategy
+Flux uses a **Unified Source, Native Binary** strategy:
+- **Core:** Compiled to `.so` (Android) and `.a` (iOS).
+- **Assets:** Bundled as raw assets in APK/IPA or downloaded on first run via the Sync Manager.

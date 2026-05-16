@@ -13,32 +13,33 @@ Flux AI Terminal is a production-grade, native Rust-powered Linux environment fo
 
 ---
 
-## 💎 Premium Features
+## 💎 Technical Specifications
 
-| Feature | Description | Status |
+| Component | Technology | Capability |
 | :--- | :--- | :--- |
-| **🦀 Native Rust Engine** | Zero-latency terminal emulation and shell execution. | ✅ Active |
-| **🧠 Local AI Assistant** | Integrated RAG-powered AI for code generation. | ✅ Active |
-| **📦 Native Dpkg/Apt** | Real Debian package management with dependency resolution. | ✅ Active |
-| **🛡️ Layered Security** | AES-256-GCM + Biometric Auth + Regex Firewall. | ✅ Active |
-| **🖥️ Wayland GUI** | Run Linux GUI applications directly on mobile. | ✅ Active |
-| **☁️ Cloud Sync** | Bidirectional GitHub/Gist synchronization. | ✅ Active |
+| **Core Engine** | Rust (Async/Await) | Zero-latency shell, PTY emulation |
+| **Security** | AES-256-GCM | Hardware-backed biometric encryption |
+| **AI Subsystem** | Llama.cpp / RAG | 4-bit quantized local LLM inference |
+| **VFS Layer** | OverlayFS / Ext4 | Full Linux rootfs isolation |
+| **UI Framework** | Compose / SwiftUI | Native GPU-accelerated rendering |
 
 ---
 
-## 🛠️ Project Architecture
+## 🏗️ System Architecture
+Flux AI Terminal operates on a **Decoupled Bridge Architecture**. The engine is completely isolated from the UI, communicating via a high-speed JSON-serialized JNI/FFI bridge.
 
-Flux is built with a **Security-First** and **Performance-First** philosophy.
+> [!TIP]
+> For a deep technical dive into the core engine, memory safety, and security protocols, read the **[Full Architecture Specification](docs/ARCHITECTURE.md)**.
 
-```text
-├── core/                # 🦀 Rust Core Engine (The "Brain")
-│   ├── security/        # 🛡️ Firewall, Vault, and Keychain
-│   ├── ai/              # 🧠 Local AI & Autocomplete
-│   └── shell/           # 🐚 Async Shell Interpreter
-├── android-app/         # 🤖 Android UI (Jetpack Compose)
-├── ios-app/             # 🍎 iOS UI (SwiftUI)
-└── assets/              # 🎨 470MB+ AI Models & RootFS
-```
+---
+
+## 🛠️ Internal Frameworks
+Flux is composed of several high-performance sub-systems:
+- **`flux-core/security`**: Advanced firewall and biometric keychain.
+- **`flux-core/shell`**: Recursive async shell interpreter with alias support.
+- **`flux-core/ai`**: Local autocomplete and RAG engine.
+- **`flux-core/package`**: Native `dpkg` and `apt` database manager.
+
 
 ---
 
