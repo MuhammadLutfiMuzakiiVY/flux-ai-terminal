@@ -50,6 +50,63 @@ graph TD
 
 ---
 
+## 🔄 Program Workflows (Alur Kerja)
+
+### 1. Secure Boot & Unlock Flow
+This flow ensures that the complex engine is only accessible after hardware verification.
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Android_UI as Android (Kotlin)
+    participant Bridge as JNI Bridge
+    participant Security as Security Manager (Rust)
+    participant Vault as Encrypted Vault
+
+    User->>Android_UI: Open App
+    Android_UI->>User: Request Biometric
+    User->>Android_UI: Scans Fingerprint
+    Android_UI->>Bridge: sendMessage(Unlock, token)
+    Bridge->>Security: unlock_hardware_layer(token)
+    Security->>Vault: Decrypt Master Key
+    Vault-->>Security: Success
+    Security-->>Bridge: OK
+    Bridge-->>Android_UI: UI Unlocked
+```
+
+### 2. Intelligent Command Execution Flow
+Detailed alur for command processing with firewall interception.
+
+```mermaid
+sequenceDiagram
+    participant UI as Native UI
+    participant Bridge as Bridge (JSON)
+    participant Core as Flux Engine
+    participant FW as Firewall (Regex)
+    participant Shell as Async Shell
+    participant VFS as Virtual Filesystem
+
+    UI->>Bridge: ExecuteCommand("rm -rf /")
+    Bridge->>Core: execute_command()
+    Core->>FW: check_command_safety()
+    FW-->>Core: SafetyAction::Block
+    Core-->>Bridge: Error: "Blocked by Firewall"
+    Bridge-->>UI: Show Error Toast
+    
+    UI->>Bridge: ExecuteCommand("ls -la")
+    Bridge->>Core: execute_command()
+    Core->>FW: check_command_safety()
+    FW-->>Core: SafetyAction::Allow
+    Core->>Shell: execute()
+    Shell->>VFS: read_dir()
+    VFS-->>Shell: File List
+    Shell-->>Core: CommandOutput
+    Core-->>Bridge: BridgeMessage::CommandOutput
+    Bridge-->>UI: Render Terminal View
+```
+
+---
+
 ### 🛡️ Layer 1: Security Architecture (Zero-Trust)
 Flux implements a hardware-backed security model:
 - **Biometric Handshake:** Upon app start, the `Native UI` requests a biometric token.
